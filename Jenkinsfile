@@ -6,6 +6,7 @@ pipeline {
         IMAGE_NAME      = 'docker-url-shortener'
         DOCKER_CREDS    = credentials('docker-hub-credentials')
         DOCKER_BIN      = '\"C:\\Users\\parvj\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe\"'
+        DOCKER_HOST     = 'tcp://127.0.0.1:2375'
     }
 
     stages {
