@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+  labels:
+    app: url-shortener-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: url-shortener-api
+  template:
+    metadata:
+      labels:
+        app: url-shortener-api
+    spec:
+      containers:
+        - name: web-api
+          image: parvjn/docker-url-shortener:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DB_HOST
+              value: "postgres-db"
+            - name: REDIS_HOST
+              value: "redis-cache"
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: url-shortener-api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
