@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_USER = 'parvjn'
         IMAGE_NAME      = 'docker-url-shortener'
         DOCKER_CREDS    = credentials('docker-hub-credentials')
-        DOCKER_BIN      = '\"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe\"'
+        DOCKER_BIN      = '\"C:\\Users\\parvj\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe\"'
     }
 
     stages {
